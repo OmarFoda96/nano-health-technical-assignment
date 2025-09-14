@@ -1,0 +1,129 @@
+<div class="container">
+  <div class="page-header">
+    <h1>{{ 'cart.title' | translate }}</h1>
+  </div>
+
+  @if (loadingService.isLoading()) {
+    <div class="loading-container">
+      <app-loading-spinner [message]="'common.loading'"></app-loading-spinner>
+    </div>
+  }
+
+  @if (!(loadingService.isLoading())) {
+    <div class="cart-content">
+      @if ((cartItemCount$ | async) === 0) {
+        <div class="empty-cart">
+          <mat-icon class="empty-icon">shopping_cart</mat-icon>
+          <h2>{{ 'cart.empty' | translate }}</h2>
+          <p>{{ 'cart.continueShopping' | translate }}</p>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="onContinueShopping()">
+            {{ 'cart.continueShopping' | translate }}
+          </button>
+        </div>
+      }
+
+      @if ((cartItemCount$ | async)! > 0) {
+        <div class="cart-items">
+          <div class="cart-header">
+            <h2>{{ 'cart.title' | translate }} ({{ cartItemCount$ | async }} {{ 'common.quantity' | translate }})</h2>
+            <button
+              mat-button
+              color="warn"
+              (click)="onClearCart()">
+              <mat-icon>clear_all</mat-icon>
+              {{ 'common.clear' | translate }}
+            </button>
+          </div>
+
+          <div class="items-list">
+            @for (item of cartItems$ | async; track trackByProductId($index, item)) {
+              <mat-card class="cart-item">
+                <div class="item-content">
+                  <div class="item-image">
+                    <img [src]="item.product.image" [alt]="item.product.title" class="product-image">
+                  </div>
+
+                  <div class="item-details">
+                    <h3 class="item-title">{{ item.product.title }}</h3>
+                    <p class="item-category">{{ item.product.category | titlecase }}</p>
+                    <div class="item-price">${{ item.product.price | number:'1.2-2' }}</div>
+                  </div>
+
+                  <div class="item-quantity">
+                    <button
+                      mat-icon-button
+                      (click)="onUpdateQuantity(item, item.quantity - 1)"
+                      [disabled]="item.quantity <= 1">
+                      <mat-icon>remove</mat-icon>
+                    </button>
+                    <span class="quantity-value">{{ item.quantity }}</span>
+                    <button
+                      mat-icon-button
+                      (click)="onUpdateQuantity(item, item.quantity + 1)">
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </div>
+
+                  <div class="item-total">
+                    <div class="total-price">${{ (item.product.price * item.quantity) | number:'1.2-2' }}</div>
+                  </div>
+
+                  <div class="item-actions">
+                    <button
+                      mat-icon-button
+                      color="warn"
+                      (click)="onRemoveItem(item)"
+                      [matTooltip]="'common.removeFromCart' | translate">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </mat-card>
+            }
+          </div>
+
+          <mat-card class="cart-summary">
+            <mat-card-header>
+              <mat-card-title>{{ 'cart.title' | translate }}</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+              <div class="summary-row">
+                <span>{{ 'cart.subtotal' | translate }}:</span>
+                <span>${{ cartTotal$ | async | number:'1.2-2' }}</span>
+              </div>
+
+              <div class="summary-row">
+                <span>{{ 'cart.tax' | translate }} (10%):</span>
+                <span>${{ ((cartTotal$ | async) || 0) * 0.1 | number:'1.2-2' }}</span>
+              </div>
+
+              <div class="summary-row">
+                <span>{{ 'cart.shipping' | translate }}:</span>
+                <span>$0.00</span>
+              </div>
+
+              <mat-divider></mat-divider>
+
+              <div class="summary-row total-row">
+                <span>{{ 'common.total' | translate }}:</span>
+                <span>${{ ((cartTotal$ | async) || 0) * 1.1 | number:'1.2-2' }}</span>
+              </div>
+            </mat-card-content>
+
+            <mat-card-actions class="summary-actions">
+              <button
+                mat-button
+                (click)="onContinueShopping()">
+                {{ 'cart.continueShopping' | translate }}
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,44 @@
+<mat-toolbar color="primary" class="header-toolbar">
+  <div class="header-content">
+    <div class="header-left">
+      <h1 class="header-title pointer" routerLink="/">
+        {{ "header.title" | translate }}
+      </h1>
+    </div>
+
+    <div class="header-right">
+      <!-- Language Switcher -->
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="languageMenu"
+        class="language-button"
+      >
+        <mat-icon>language</mat-icon>
+      </button>
+      <mat-menu #languageMenu="matMenu">
+        <button mat-menu-item (click)="switchLanguage('en')">
+          <mat-icon>flag</mat-icon>
+          <span>{{ "header.english" | translate }}</span>
+        </button>
+        <button mat-menu-item (click)="switchLanguage('ar')">
+          <mat-icon>flag</mat-icon>
+          <span>{{ "header.arabic" | translate }}</span>
+        </button>
+      </mat-menu>
+
+      <button mat-icon-button routerLink="/favorites" class="favorites-button">
+        <mat-icon>favorite</mat-icon>
+        <span style="font-size: 10px; color: red">{{
+          favoritesCount$ | async
+        }}</span>
+      </button>
+
+      <button mat-icon-button routerLink="/cart" class="cart-button">
+        <mat-icon> shopping_cart </mat-icon>
+        <span style="font-size: 10px; color: red">{{
+          cartItemCount$ | async
+        }}</span>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>

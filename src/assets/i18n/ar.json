@@ -1,0 +1,80 @@
+{
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "retry": "إعادة المحاولة",
+    "search": "البحث",
+    "filter": "تصفية",
+    "sort": "ترتيب",
+    "price": "السعر",
+    "title": "العنوان",
+    "ascending": "تصاعدي",
+    "descending": "تنازلي",
+    "addToCart": "إضافة إلى السلة",
+    "removeFromCart": "إزالة من السلة",
+    "addToFavorites": "إضافة إلى المفضلة",
+    "removeFromFavorites": "إزالة من المفضلة",
+    "cart": "السلة",
+    "favorites": "المفضلة",
+    "total": "الإجمالي",
+    "quantity": "الكمية",
+    "description": "الوصف",
+    "category": "الفئة",
+    "rating": "التقييم",
+    "page": "صفحة",
+    "of": "من",
+    "previous": "السابق",
+    "next": "التالي",
+    "noResults": "لم يتم العثور على نتائج",
+    "noProducts": "لا توجد منتجات متاحة",
+    "errorLoadingProducts": "خطأ في تحميل المنتجات",
+    "errorLoadingProduct": "خطأ في تحميل تفاصيل المنتج",
+    "errorLoadingCategories": "خطأ في تحميل الفئات",
+    "clear": "مسح"
+  },
+  "header": {
+    "title": "لوحة إدارة المنتجات",
+    "language": "اللغة",
+    "english": "الإنجليزية",
+    "arabic": "العربية"
+  },
+  "products": {
+    "title": "المنتجات",
+    "allCategories": "جميع الفئات",
+    "sortBy": "ترتيب حسب",
+    "searchPlaceholder": "البحث عن المنتجات...",
+    "priceRange": "نطاق السعر",
+    "minPrice": "أقل سعر",
+    "maxPrice": "أعلى سعر",
+    "applyFilters": "تطبيق التصفيات",
+    "clearFilters": "مسح التصفيات",
+    "showingResults": "عرض {{start}} - {{end}} من {{total}} نتيجة"
+  },
+  "productDetail": {
+    "title": "تفاصيل المنتج",
+    "backToProducts": "العودة إلى المنتجات",
+    "inStock": "متوفر في المخزون",
+    "outOfStock": "غير متوفر في المخزون",
+    "reviews": "المراجعات",
+    "specifications": "المواصفات"
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "empty": "سلة التسوق فارغة",
+    "subtotal": "المجموع الفرعي",
+    "tax": "الضريبة",
+    "shipping": "الشحن",
+    "checkout": "إنهاء الطلب",
+    "continueShopping": "متابعة التسوق",
+    "itemAdded": "تم إضافة العنصر إلى السلة",
+    "itemRemoved": "تم إزالة العنصر من السلة",
+    "quantityUpdated": "تم تحديث الكمية"
+  },
+  "favorites": {
+    "title": "المفضلة",
+    "empty": "لا توجد مفضلات حتى الآن",
+    "itemAdded": "تم إضافة إلى المفضلة",
+    "itemRemoved": "تم إزالة من المفضلة",
+    "continueShopping": "ابدأ بإضافة المنتجات إلى المفضلة"
+  }
+}

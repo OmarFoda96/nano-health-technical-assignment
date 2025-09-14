@@ -1,0 +1,80 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "price": "Price",
+    "title": "Title",
+    "ascending": "Ascending",
+    "descending": "Descending",
+    "addToCart": "Add to Cart",
+    "removeFromCart": "Remove from Cart",
+    "addToFavorites": "Add to Favorites",
+    "removeFromFavorites": "Remove from Favorites",
+    "cart": "Cart",
+    "favorites": "Favorites",
+    "total": "Total",
+    "quantity": "Quantity",
+    "description": "Description",
+    "category": "Category",
+    "rating": "Rating",
+    "page": "Page",
+    "of": "of",
+    "previous": "Previous",
+    "next": "Next",
+    "noResults": "No results found",
+    "noProducts": "No products available",
+    "errorLoadingProducts": "Error loading products",
+    "errorLoadingProduct": "Error loading product details",
+    "errorLoadingCategories": "Error loading categories",
+    "clear": "Clear"
+  },
+  "header": {
+    "title": "Product Management Dashboard",
+    "language": "Language",
+    "english": "English",
+    "arabic": "Arabic"
+  },
+  "products": {
+    "title": "Products",
+    "allCategories": "All Categories",
+    "sortBy": "Sort by",
+    "searchPlaceholder": "Search products...",
+    "priceRange": "Price Range",
+    "minPrice": "Min Price",
+    "maxPrice": "Max Price",
+    "applyFilters": "Apply Filters",
+    "clearFilters": "Clear Filters",
+    "showingResults": "Showing {{start}} - {{end}} of {{total}} results"
+  },
+  "productDetail": {
+    "title": "Product Details",
+    "backToProducts": "Back to Products",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "reviews": "Reviews",
+    "specifications": "Specifications"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "shipping": "Shipping",
+    "checkout": "Checkout",
+    "continueShopping": "Continue Shopping",
+    "itemAdded": "Item added to cart",
+    "itemRemoved": "Item removed from cart",
+    "quantityUpdated": "Quantity updated"
+  },
+  "favorites": {
+    "title": "Favorites",
+    "empty": "No favorites yet",
+    "itemAdded": "Added to favorites",
+    "itemRemoved": "Removed from favorites",
+    "continueShopping": "Start adding products to your favorites"
+  }
+}

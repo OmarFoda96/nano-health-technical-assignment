@@ -1,0 +1,21 @@
+@use 'sass:math';
+
+@function half($n) {
+  @return round($n / 2);
+}
+
+@function quarter($n) {
+  @return round($n / 4);
+}
+
+@function double($n) {
+  @return round($n * 2);
+}
+
+@function quadruple($n) {
+  @return round($n * 4);
+}
+
+@function toRem($value) {
+  @return math.div($value, 16)+rem;
+}

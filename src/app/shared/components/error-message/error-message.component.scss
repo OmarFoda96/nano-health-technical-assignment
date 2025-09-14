@@ -1,0 +1,36 @@
+.error-card {
+  max-width: 500px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.error-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.error-icon {
+  font-size: 3rem;
+  width: 3rem;
+  height: 3rem;
+  color: #f44336;
+}
+
+.error-title {
+  margin: 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.error-message {
+  margin: 0;
+  color: #666;
+  line-height: 1.5;
+}
+
+.retry-button {
+  margin-top: 1rem;
+}

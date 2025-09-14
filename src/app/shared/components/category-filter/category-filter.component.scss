@@ -1,0 +1,27 @@
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.category-chip {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  &.selected {
+    background-color: #3f51b5;
+    color: white;
+  }
+}
+
+@media (max-width: 768px) {
+  .category-filter {
+    gap: 4px;
+  }
+}

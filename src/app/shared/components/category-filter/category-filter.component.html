@@ -1,0 +1,21 @@
+<div class="category-filter">
+  <mat-chip
+    [class.selected]="selectedCategory === null"
+    (click)="onCategorySelect(null)"
+    (keydown)="onCategorySelect(null)"
+    class="category-chip"
+  >
+    {{ "products.allCategories" | translate }}
+  </mat-chip>
+  @for (category of categories; track $index) {
+
+  <mat-chip
+    [class.selected]="selectedCategory === category"
+    (click)="onCategorySelect(category)"
+    (keydown)="onCategorySelect(category)"
+    class="category-chip"
+  >
+    {{ category | titlecase }}
+  </mat-chip>
+  }
+</div>

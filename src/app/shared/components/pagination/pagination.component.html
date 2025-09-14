@@ -1,0 +1,35 @@
+@if (totalPages > 1) {
+  <div class="pagination-container">
+    <div class="pagination-info">
+      <span>{{ 'products.showingResults' | translate: { start: startItem, end: endItem, total: totalItems } }}</span>
+    </div>
+    
+    <div class="pagination-controls">
+      <button 
+        mat-icon-button 
+        [disabled]="currentPage === 1"
+        (click)="onPreviousPage()"
+        class="pagination-button">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      
+      @for (page of pages; track page) {
+        <button 
+          mat-button
+          [class.active]="page === currentPage"
+          (click)="onPageChange(page)"
+          class="pagination-page-button">
+          {{ page }}
+        </button>
+      }
+      
+      <button 
+        mat-icon-button 
+        [disabled]="currentPage === totalPages"
+        (click)="onNextPage()"
+        class="pagination-button">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </div>
+}

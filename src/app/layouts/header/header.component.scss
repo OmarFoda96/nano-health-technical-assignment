@@ -1,0 +1,59 @@
+@import '../../../scss/variables';
+
+.header-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 toRem(2) toRem(4) rgba(0, 0, 0, 0.1);
+  background-color: $background-main-dark;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: toRem(1200);
+  margin: 0 auto;
+  padding: 0 toRem(16);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-title {
+  margin: 0;
+  font-size: toRem(24);
+  font-weight: 500;
+  color: white;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: toRem(8);
+}
+
+.language-button,
+.favorites-button,
+.cart-button {
+  color: white;
+}
+
+.language-button:hover,
+.favorites-button:hover,
+.cart-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: toRem(768)) {
+  .header-title {
+    font-size: 1.2rem;
+  }
+
+  .header-content {
+    padding: 0 toRem(8);
+  }
+}

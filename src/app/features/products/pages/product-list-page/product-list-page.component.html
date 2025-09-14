@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="page-header">
+    <h1>{{ "products.title" | translate }}</h1>
+  </div>
+
+  <div class="filters-section">
+    <div class="filters-row">
+      <div class="search-container">
+        <app-search-bar
+          [placeholder]="'products.searchPlaceholder'"
+          (searchChange)="onSearchChange($event)"
+        >
+        </app-search-bar>
+      </div>
+
+      <div class="sort-container">
+        <app-sort-dropdown
+          [sortControl]="sortControl"
+          [options]="sortOptions"
+          (sortChange)="onSortChange($event)"
+        >
+        </app-sort-dropdown>
+      </div>
+    </div>
+
+    <div class="category-container">
+      <app-category-filter
+        [categories]="(categories$ | async) || []"
+        [selectedCategory]="selectedCategory"
+        (categoryChange)="onCategoryChange($event)"
+      >
+      </app-category-filter>
+    </div>
+  </div>
+
+  @if (loadingService.isLoading()) {
+  <div class="skeleton-container">
+    <div class="product-grid">
+      @for (item of [1,2,3,4,5,6,7,8]; track $index) {
+      <div class="product-card-skeleton">
+        <ngx-skeleton-loader
+          count="1"
+          appearance="circle"
+          [theme]="{
+            height: '200px',
+            width: '100%',
+            'margin-bottom': '10px'
+          }"
+        >
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          count="2"
+          [theme]="{
+            height: '20px',
+            'margin-bottom': '8px'
+          }"
+        >
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          count="1"
+          [theme]="{
+            height: '16px',
+            width: '60%'
+          }"
+        >
+        </ngx-skeleton-loader>
+      </div>
+      }
+    </div>
+  </div>
+  } @if (error$ | async; as error) {
+  <div class="error-container">
+    <app-error-message [message]="error" (retry)="onRetry()">
+    </app-error-message>
+  </div>
+  } @if (!(loadingService.isLoading()) && !(error$ | async)) {
+  <div class="products-section">
+    <div class="product-grid">
+      @for (product of products$ | async; track trackByProductId($index,
+      product)) {
+      <app-product-card
+        [product]="product"
+        (productClick)="onProductClick($event)"
+      >
+      </app-product-card>
+      }
+    </div>
+
+    @if ((products$ | async)?.length === 0) {
+    <div class="no-results">
+      <h3>{{ "common.noResults" | translate }}</h3>
+      <p>{{ "common.noProducts" | translate }}</p>
+    </div>
+    } @else if ((products$ | async)!.length > 0) {
+    <app-pagination
+      [currentPage]="(pagination$ | async)?.page"
+      [totalPages]="(pagination$ | async)?.totalPages"
+      [totalItems]="(pagination$ | async)?.total"
+      [itemsPerPage]="(pagination$ | async)?.limit"
+      (pageChange)="onPageChange($event)"
+    >
+    </app-pagination>
+    }
+  </div>
+  }
+</div>

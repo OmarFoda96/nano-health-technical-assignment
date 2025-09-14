@@ -1,0 +1,64 @@
+<mat-card
+  class="product-card"
+  (click)="onProductClick()"
+  (keydown)="onProductClick()"
+>
+  <div class="product-image-container">
+    <img
+      [src]="product.image"
+      [alt]="product.title"
+      class="product-image"
+      loading="lazy"
+    />
+    @if (showActions) {
+    <div class="product-actions">
+      <button
+        mat-icon-button
+        class="favorite-button"
+        [class.favorited]="isFavorite$ | async"
+        (click)="onToggleFavorite($event)"
+        [matTooltip]="
+          (isFavorite$ | async)
+            ? 'common.removeFromFavorites'
+            : ('common.addToFavorites' | translate)
+        "
+      >
+        <mat-icon>{{
+          (isFavorite$ | async) ? "favorite" : "favorite_border"
+        }}</mat-icon>
+      </button>
+    </div>
+    }
+  </div>
+
+  <mat-card-content class="product-content">
+    <h3 class="product-title">{{ product.title }}</h3>
+    <p class="product-category">
+      <mat-chip>{{ product.category }}</mat-chip>
+    </p>
+    <div class="product-rating">
+      <mat-icon class="star-icon">star</mat-icon>
+      <span class="rating-value">{{ product.rating.rate }}</span>
+      <span class="rating-count">({{ product.rating.count }})</span>
+    </div>
+    <p class="product-price">${{ product.price | number : "1.2-2" }}</p>
+  </mat-card-content>
+
+  @if (showActions) {
+  <mat-card-actions class="product-actions-bottom">
+    <button
+      mat-raised-button
+      color="primary"
+      class="add-to-cart-button"
+      (click)="onAddToCart($event)"
+    >
+      <mat-icon>shopping_cart</mat-icon>
+      @if(isInCart()){
+      <span>{{ "common.removeFromCart" | translate }}</span>
+      }@else {
+      <span>{{ "common.addToCart" | translate }}</span>
+      }
+    </button>
+  </mat-card-actions>
+  }
+</mat-card>

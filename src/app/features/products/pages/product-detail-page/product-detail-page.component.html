@@ -1,0 +1,201 @@
+<div class="container">
+  <div class="back-button">
+    <button mat-button (click)="onBackToProducts()">
+      <mat-icon>arrow_back</mat-icon>
+      {{ "productDetail.backToProducts" | translate }}
+    </button>
+  </div>
+
+  @if (loadingService.isLoading()) {
+  <div class="skeleton-container">
+    <div class="product-detail">
+      <div class="product-content">
+        <div class="product-image-section">
+          <ngx-skeleton-loader
+            count="1"
+            appearance="circle"
+            [theme]="{
+              height: '400px',
+              width: '100%',
+              'border-radius': '12px'
+            }"
+          >
+          </ngx-skeleton-loader>
+        </div>
+
+        <div class="product-info">
+          <div class="product-header">
+            <ngx-skeleton-loader
+              count="1"
+              [theme]="{
+                height: '32px',
+                width: '80%',
+                'margin-bottom': '16px'
+              }"
+            >
+            </ngx-skeleton-loader>
+          </div>
+
+          <div class="product-meta">
+            <ngx-skeleton-loader
+              count="1"
+              [theme]="{
+                height: '24px',
+                width: '120px',
+                'margin-bottom': '12px'
+              }"
+            >
+            </ngx-skeleton-loader>
+
+            <ngx-skeleton-loader
+              count="1"
+              [theme]="{
+                height: '20px',
+                width: '150px',
+                'margin-bottom': '16px'
+              }"
+            >
+            </ngx-skeleton-loader>
+          </div>
+
+          <ngx-skeleton-loader
+            count="1"
+            [theme]="{
+              height: '28px',
+              width: '100px',
+              'margin-bottom': '16px'
+            }"
+          >
+          </ngx-skeleton-loader>
+
+          <div class="product-description">
+            <ngx-skeleton-loader
+              count="1"
+              [theme]="{
+                height: '24px',
+                width: '120px',
+                'margin-bottom': '8px'
+              }"
+            >
+            </ngx-skeleton-loader>
+            <ngx-skeleton-loader
+              count="4"
+              [theme]="{
+                height: '16px',
+                'margin-bottom': '4px'
+              }"
+            >
+            </ngx-skeleton-loader>
+          </div>
+
+          <div class="product-actions-bottom">
+            <ngx-skeleton-loader
+              count="1"
+              [theme]="{
+                height: '40px',
+                width: '180px',
+                'border-radius': '24px'
+              }"
+            >
+            </ngx-skeleton-loader>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  } @else { @if (error$ | async; as error) {
+  <div class="error-container">
+    <app-error-message [message]="error" (retry)="onRetry()">
+    </app-error-message>
+  </div>
+  } @if (product$ | async; as product) {
+  <div class="product-detail">
+    <div class="product-content">
+      <div class="product-image-section">
+        <img
+          [src]="product.image"
+          [alt]="product.title"
+          class="product-image"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="product-info">
+        <div class="product-header">
+          <h1 class="product-title">{{ product.title }}</h1>
+          <div class="product-actions">
+            <button
+              mat-icon-button
+              [class.favorited]="isFavorite$ | async"
+              (click)="onToggleFavorite(product)"
+              [matTooltip]="
+                (isFavorite$ | async)
+                  ? ('common.removeFromFavorites' | translate)
+                  : ('common.addToFavorites' | translate)
+              "
+            >
+              <mat-icon>{{
+                (isFavorite$ | async) ? "favorite" : "favorite_border"
+              }}</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="product-meta">
+          <div class="product-category">
+            <mat-chip>{{ product.category | titlecase }}</mat-chip>
+          </div>
+
+          <div class="product-rating">
+            <div class="stars">
+              @for (star of getStarArray(product.rating.rate); track $index) {
+              <mat-icon class="star-icon">
+                {{ star ? "star" : "star_border" }}
+              </mat-icon>
+              }
+            </div>
+            <span class="rating-value">{{ product.rating.rate }}</span>
+            <span class="rating-count"
+              >({{ product.rating.count }}
+              {{ "productDetail.reviews" | translate }})</span
+            >
+          </div>
+        </div>
+
+        <div class="product-price">
+          <span class="price-value"
+            >${{ product.price | number : "1.2-2" }}</span
+          >
+          <span class="price-label">{{ "common.price" | translate }}</span>
+        </div>
+
+        <div class="product-description">
+          <h3>{{ "common.description" | translate }}</h3>
+          <p>{{ product.description }}</p>
+        </div>
+
+        <div class="product-actions-bottom">
+          <button
+            mat-raised-button
+            color="primary"
+            class="add-to-cart-button"
+            (click)="onAddToCart(product)"
+          >
+            <mat-icon>shopping_cart</mat-icon>
+            <span>{{
+              isInCart()
+                ? ("common.removeFromCart" | translate)
+                : ("common.addToCart" | translate)
+            }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  } @else if (!(loadingService.isLoading()) && !(error$ | async)) {
+  <div class="no-product">
+    <h2>{{ "common.noResults" | translate }}</h2>
+    <p>{{ "common.noProducts" | translate }}</p>
+  </div>
+  } }
+</div>
